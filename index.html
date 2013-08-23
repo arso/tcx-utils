@@ -1,5 +1,15 @@
 <html><body>
-    <script data-main="scripts/main/main.js" src="scripts/main/require.js"></script>
+    <script src="scripts/main/require.js"></script>
+
+    <script>
+            require(['scripts/main/commons'], function (commons) {
+                require(['arso/tcx-utils/parsers/TcxParser'],function(TcxParserRef){
+                   var tcxParser = new TcxParserRef();
+                   console.log('Module loaded: '+tcxParser.getName());
+                });
+            });
+    </script>
+
     <div id="mapdiv"></div>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script>
