@@ -6,7 +6,8 @@ define([],function(){
       return _name;
     }
 
-    this.drawRoute = function(target){
+
+    this.initializeMap = function(target){
       
       map = new OpenLayers.Map(target);
       map.addLayer(new OpenLayers.Layer.OSM());
@@ -27,6 +28,13 @@ define([],function(){
 
     
     }
+
+
+    this.drawRoute = function(pointsArray){
+      //TODO implement
+     console.log('TODO drawRoute not yet implemented');
+    }
+
 
   };
 

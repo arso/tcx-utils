@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery','app/arso/tcx-utils/parsers/TcxParser','app/arso/tcx-utils/osm/OSMService'], function ($,tcxParser,osmService) {
 
   var fileLoader = function() {
       var _name = "fileLoader";
@@ -12,11 +12,13 @@ define(['jquery'], function ($) {
         console.log('File with track successfully loaded: '+files[0].name);
         var reader = new FileReader();
         reader.onload = function(e){
-            console.log(e.target.result);
+            console.debug(e.target.result);
             var xml = $(e.target.result);
-
-            //TODO use parser to extract trackpoints
-
+            
+            //Array[Position]
+            console.log(tcxParser.getName());
+            var points = tcxParser.extractGeoTrackPoints(xml);
+            osmService.drawRoute(points);
         }
         reader.readAsText(files[0]);
 

@@ -14,7 +14,13 @@ require.config({
     }
 });
 
-require(['jquery','app/arso/tcx-utils/log/L','app/arso/tcx-utils/osm/OSMService','app/arso/tcx-utils/file/FileLoader'], function($,LRef,OSMServiceRef,FileLoaderRef) {
+require(['jquery',
+          'app/arso/tcx-utils/log/L',
+          'app/arso/tcx-utils/osm/OSMService',
+          'app/arso/tcx-utils/file/FileLoader',
+          'app/arso/tcx-utils/parsers/TcxParser'
+    ], 
+    function($,LRef,OSMServiceRef,FileLoaderRef, TcxParserRef) {
     "use strict";
 
     console.log('jQuery version:', $.fn.jquery); // 2.0.3
@@ -28,10 +34,13 @@ require(['jquery','app/arso/tcx-utils/log/L','app/arso/tcx-utils/osm/OSMService'
     var fileLoader = new FileLoaderRef();
     l.logModuleLoaded(fileLoader);
 
+    var tcxParser = new TcxParserRef();
+    l.logModuleLoaded(tcxParser);
+
     
     
     //initialize open street map
-    osmService.drawRoute('mapdiv');
+    osmService.initializeMap('mapdiv');
 
     //initilize file loader
     fileLoader.registerTrackFileLoadEvenHandler('trackInput');
