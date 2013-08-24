@@ -10,7 +10,16 @@ define(['jquery'], function ($) {
       this.handleFileSelect = function(event){
         var files = event.target.files;
         console.log('File with track successfully loaded: '+files[0].name);
-        //TODO parse tcx and use osm service to draw route
+        var reader = new FileReader();
+        reader.onload = function(e){
+            console.log(e.target.result);
+            var xml = $(e.target.result);
+
+            //TODO use parser to extract trackpoints
+
+        }
+        reader.readAsText(files[0]);
+
       }
 
       
