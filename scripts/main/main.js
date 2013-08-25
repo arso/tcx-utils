@@ -1,7 +1,7 @@
 require.config({
     baseUrl: 'scripts/main/lib',
     paths: {
-        'app': '../app',
+        'app': '../app'
         //'underscore': 'vendor/underscore-1.9.min'
     },
     shim: {
@@ -15,37 +15,36 @@ require.config({
 });
 
 require(['jquery',
-          'app/arso/tcx-utils/log/L',
-          'app/arso/tcx-utils/osm/OSMService',
-          'app/arso/tcx-utils/file/FileLoader',
-          'app/arso/tcx-utils/parsers/TcxParser'
-    ], 
-    function($,LRef,OSMServiceRef,FileLoaderRef, tcxParser) {
-    "use strict";
+    'app/arso/tcx-utils/log/L',
+    'app/arso/tcx-utils/osm/OSMService',
+    'app/arso/tcx-utils/file/FileLoader',
+    'app/arso/tcx-utils/parsers/TcxParser'
+],
+    function ($, LRef, OSMServiceRef, FileLoaderRef, tcxParser) {
+        "use strict";
 
-    console.log('jQuery version:', $.fn.jquery); // 2.0.3
-    
-    var l = new LRef();
-    l.logModuleLoaded(l);
- 
-    var osmService = new OSMServiceRef();
-    l.logModuleLoaded(osmService);
+        console.log('jQuery version:', $.fn.jquery); // 2.0.3
 
-    var fileLoader = new FileLoaderRef();
-    l.logModuleLoaded(fileLoader);
+        var l = new LRef();
+        l.logModuleLoaded(l);
 
-    //var tcxParser = new TcxParserRef();
-    l.logModuleLoaded(tcxParser);
+        var osmService = new OSMServiceRef();
+        l.logModuleLoaded(osmService);
 
-    
-    
-    //initialize open street map
-    osmService.initializeMap('mapdiv');
+        var fileLoader = new FileLoaderRef();
+        l.logModuleLoaded(fileLoader);
 
-    //initilize file loader
-    fileLoader.registerTrackFileLoadEvenHandler('trackInput');
+        //var tcxParser = new TcxParserRef();
+        l.logModuleLoaded(tcxParser);
 
-});
+
+        //initialize open street map
+        osmService.initializeMap('mapdiv');
+
+        //initilize file loader
+        fileLoader.registerTrackFileLoadEvenHandler('trackInput');
+
+    });
 
 
 
