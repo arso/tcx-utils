@@ -1,16 +1,18 @@
-define(['jquery', 'app/arso/tcx-utils/parsers/TcxParser', 'app/arso/tcx-utils/osm/OSMService'], function ($, TcxParserRef, OsmServiceRef) {
+define(['jquery', 'app/arso/tcx-utils/parsers/TcxParser', 'app/arso/tcx-utils/osm/OSMService'], function ($, tcxParser, osmService) {
 
-    var tcxParser = TcxParserRef;
-    var osmService = new OsmServiceRef();
-
-    var fileLoader = function () {
-        var _name = "fileLoader";
-        this.getName = function () {
-            return _name;
-        }
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+        console.log("File API supported");
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
 
 
-        this.handleFileSelect = function (event) {
+    return  {
+        getName: function () {
+            return "fileLoader";
+        },
+        handleFileSelect: function (event) {
             var files = event.target.files;
             console.log('File with track successfully loaded: ' + files[0].name);
             var reader = new FileReader();
@@ -24,18 +26,8 @@ define(['jquery', 'app/arso/tcx-utils/parsers/TcxParser', 'app/arso/tcx-utils/os
             }
             reader.readAsText(files[0]);
 
-        }
-
-
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            // Great success! All the File APIs are supported.
-            console.log("File API supported");
-        } else {
-            alert('The File APIs are not fully supported in this browser.');
-        }
-
-
-        this.registerTrackFileLoadEvenHandler = function (fileLoaderInputId) {
+        },
+        registerTrackFileLoadEvenHandler: function (fileLoaderInputId) {
 
             var input = $('#' + fileLoaderInputId);
             if (input.size() == 1) {
@@ -43,10 +35,7 @@ define(['jquery', 'app/arso/tcx-utils/parsers/TcxParser', 'app/arso/tcx-utils/os
             } else {
                 console.log(fileLoaderInputId + ' element not found');
             }
-
         }
-    };
+    }
 
-    return fileLoader;
-
-});
+})

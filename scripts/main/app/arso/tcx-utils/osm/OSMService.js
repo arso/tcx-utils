@@ -1,13 +1,13 @@
 define([], function () {
-    var osmService = function () {
-        var _name = "osmService";
 
-        this.getName = function () {
-            return _name;
-        }
+    return {
+        _name: "osmService",
 
+        getName: function () {
+            return this._name;
+        },
 
-        this.initializeMap = function (target) {
+        initializeMap: function (target) {
 
             map = new OpenLayers.Map(target);
             map.addLayer(new OpenLayers.Layer.OSM());
@@ -25,16 +25,10 @@ define([], function () {
             markers.addMarker(new OpenLayers.Marker(lonLat));
 
             map.setCenter(lonLat, zoom);
-        }
-
-
-        this.drawRoute = function (pointsArray) {
+        },
+        drawRoute: function (pointsArray) {
             //TODO implement
             console.log('TODO drawRoute not yet implemented');
         }
-
-
     };
-
-    return osmService;
 });
