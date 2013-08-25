@@ -1,4 +1,7 @@
-define(['jquery','app/arso/tcx-utils/parsers/TcxParser','app/arso/tcx-utils/osm/OSMService'], function ($,tcxParser,osmService) {
+define(['jquery','app/arso/tcx-utils/parsers/TcxParser','app/arso/tcx-utils/osm/OSMService'], function ($,TcxParserRef,OsmServiceRef) {
+
+  var tcxParser = TcxParserRef;
+  var osmService = new OsmServiceRef();
 
   var fileLoader = function() {
       var _name = "fileLoader";
@@ -14,7 +17,6 @@ define(['jquery','app/arso/tcx-utils/parsers/TcxParser','app/arso/tcx-utils/osm/
         reader.onload = function(e){
             console.debug(e.target.result);
             var xml = $(e.target.result);
-            
             //Array[Position]
             console.log(tcxParser.getName());
             var points = tcxParser.extractGeoTrackPoints(xml);

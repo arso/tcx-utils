@@ -25,8 +25,6 @@ define([],function(){
       markers.addMarker(new OpenLayers.Marker(lonLat));
  
       map.setCenter (lonLat, zoom);
-
-    
     }
 
 
